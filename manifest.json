@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Kızılcık · TTS Yakala",
+  "version": "1.0",
+  "description": "Google Cloud TTS demo (Gemini) önizlemesini dinlerken otomatik WAV olarak indirir.",
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
+  },
+  "permissions": ["downloads"],
+  "background": { "scripts": ["background.js"] },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "kizilcik-tts@erkinemreta1",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://cloud.google.com/text-to-speech*",
+        "https://www.gstatic.com/cloud-site-ux/*"
+      ],
+      "all_frames": true,
+      "run_at": "document_start",
+      "js": ["page.js"],
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://cloud.google.com/text-to-speech*",
+        "https://www.gstatic.com/cloud-site-ux/*"
+      ],
+      "all_frames": true,
+      "run_at": "document_start",
+      "js": ["content.js"]
+    }
+  ]
+}
